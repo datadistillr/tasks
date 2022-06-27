@@ -18,11 +18,6 @@ class Tasks extends BaseConfig
      */
 
     /**
-     * Test
-     */
-    public string $test = 'test';
-
-    /**
      * Database Table Name
      * If table name needs to be changed, it should be done prior to running
      * Migrations.
