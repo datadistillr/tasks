@@ -20,7 +20,7 @@ class Tasks extends BaseConfig
     /**
      * Test
      */
-    public string $test = 'test';
+    public string $test = 'testx';
 
     /**
      * Database Table Name
