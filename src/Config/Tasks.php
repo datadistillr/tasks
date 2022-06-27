@@ -42,6 +42,7 @@ class Tasks extends BaseConfig
      */
     public bool $logPerformance = false;
 
+
     /**
      * --------------------------------------------------------------------------
      * Maximum performance logs
