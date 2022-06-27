@@ -4,7 +4,6 @@ namespace CodeIgniter\Tasks\Config;
 
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\I18n\Time;
-use CodeIgniter\Tasks\Entities\StoredTask;
 use CodeIgniter\Tasks\Models\StoredTaskModel;
 use CodeIgniter\Tasks\Scheduler;
 
@@ -22,13 +21,11 @@ class Tasks extends BaseConfig
      * Database Table Name
      * If table name needs to be changed, it should be done prior to running
      * Migrations.
-     * @var string $databaseTable
      */
     public string $databaseTable = 'scheduled_tasks';
 
     /**
      * Date Format.  The 'seconds' are intentionally set to 00
-     * @var string $sqlDateFormat
      */
     public string $sqlDateFormat = 'Y-m-d H:i:00';
 
@@ -41,7 +38,6 @@ class Tasks extends BaseConfig
      * Requires the settings table to have been created previously.
      */
     public bool $logPerformance = false;
-
 
     /**
      * --------------------------------------------------------------------------
@@ -60,13 +56,12 @@ class Tasks extends BaseConfig
      */
     public function init(Scheduler $schedule)
     {
-
         $currentTime = new Time();
 
         $storedTaskModel = new StoredTaskModel();
-        $storedTasks = $storedTaskModel->findByTime($currentTime);
+        $storedTasks     = $storedTaskModel->findByTime($currentTime);
 
-        foreach($storedTasks as $storedTask) {
+        foreach ($storedTasks as $storedTask) {
             $schedule->{$storedTask->type}($storedTask->command)->cron($storedTask->expression);
         }
 
