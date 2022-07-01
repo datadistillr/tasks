@@ -11,19 +11,20 @@ use Exception;
 
 /**
  * Class TaskModel
- *
- * @author Tim Swagger <tim@datadistillr.com>
  */
-class StoredTaskModel extends Model {
+class StoredTaskModel extends Model
+{
     /**
      * Database Table
-     * @var string $table
+     *
+     * @var string
      */
     protected $table;
 
     /**
      * Allowed Fields
-     * @var string[] $allowedFields
+     *
+     * @var string[]
      */
     protected $allowedFields = [
         'type',
@@ -36,30 +37,31 @@ class StoredTaskModel extends Model {
 
     /**
      * Validation Rules
-     * @var string[] $validationRules
+     *
+     * @var string[]
      */
     protected $validationRules = [
-        'type' => 'required|in_list[call,command,shell,event,url]',
+        'type'       => 'required|in_list[call,command,shell,event,url]',
         'expression' => 'required',
-        'command' => 'required',
+        'command'    => 'required',
     ];
 
     /**
      * Return type/Entity
-     * @var string $returnType
+     *
+     * @var string
      */
     protected $returnType = 'CodeIgniter\Tasks\Entities\StoredTask';
-
 
     /**
      * Constructor
      *
-     * @param ?ConnectionInterface $db  [default: null]
+     * @param ?ConnectionInterface $db         [default: null]
      * @param ?ValidationInterface $validation [default: null]
      */
     public function __construct(?ConnectionInterface $db = null, ?ValidationInterface $validation = null)
     {
-        $config = Config('Tasks');
+        $config      = Config('Tasks');
         $this->table = $config->databaseTable;
 
         parent::__construct($db, $validation);
@@ -69,23 +71,25 @@ class StoredTaskModel extends Model {
      * Find by time
      *
      * @param ?Time $current Current time this will round down to the floor of the current minute [default: null; current time]
-     * @return StoredTask[]
+     *
      * @throws Exception
+     *
+     * @return StoredTask[]
      */
     public function findByTime(?Time $current = null): array
     {
-        if(! isset($current)) {
+        if (! isset($current)) {
             $current = Time::now();
         }
         $sqlDateFormat = config('Tasks')->sqlDateFormat;
 
         return $this->groupStart()
-                ->where('start <=', $current->format($sqlDateFormat))
-                ->orWhere('start IS NULL')
+            ->where('start <=', $current->format($sqlDateFormat))
+            ->orWhere('start IS NULL')
             ->groupEnd()
             ->groupStart()
-                ->where('end >=', $current->format($sqlDateFormat))
-                ->orWhere('end IS NULL')
+            ->where('end >=', $current->format($sqlDateFormat))
+            ->orWhere('end IS NULL')
             ->groupEnd()
             ->findAll();
     }

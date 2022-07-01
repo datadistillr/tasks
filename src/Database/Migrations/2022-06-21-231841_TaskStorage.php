@@ -25,7 +25,7 @@ class TaskStorage extends Migration
                 'constraint' => 50,
             ],
             'command' => [
-                'type' => 'text'
+                'type' => 'text',
             ],
             'name' => [
                 'type'       => 'varchar',
@@ -50,7 +50,7 @@ class TaskStorage extends Migration
             'deleted_at' => [
                 'type' => 'datetime',
                 'null' => true,
-            ]
+            ],
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->createTable(config('Tasks')->databaseTable, true);

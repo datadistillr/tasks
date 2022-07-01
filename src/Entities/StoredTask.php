@@ -6,11 +6,9 @@ use CodeIgniter\Entity\Entity;
 
 /**
  * Class StoredTask Entity
- *
- * @author Tim Swagger <tim@datadistillr.com>
  */
-class StoredTask extends Entity {
-
+class StoredTask extends Entity
+{
     //-------------------------------------------------
     // region Properties
     //-------------------------------------------------
@@ -22,7 +20,7 @@ class StoredTask extends Entity {
         'end_at',
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     /**
@@ -30,10 +28,9 @@ class StoredTask extends Entity {
      * when they are accessed.
      */
     protected $casts = [
-        'id' => 'integer'
+        'id' => 'integer',
         // TODO: cast type as an enum
     ];
-
 
     // endregion
 }
