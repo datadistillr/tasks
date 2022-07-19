@@ -53,11 +53,11 @@ class TaskStorage extends Migration
             ],
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->createTable(config('Tasks')->databaseTable, true);
+        $this->forge->createTable(config('CodeIgniter\Tasks\Config\Tasks')->databaseTable, true);
     }
 
     public function down()
     {
-        $this->forge->dropTable(config('Tasks')->databaseTable);
+        $this->forge->dropTable(config('CodeIgniter\Tasks\Config\Tasks')->databaseTable);
     }
 }
