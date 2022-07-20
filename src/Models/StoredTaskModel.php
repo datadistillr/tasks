@@ -22,6 +22,23 @@ class StoredTaskModel extends Model
     protected $table;
 
     /**
+     * If true, will set created_at, and updated_at
+     * values during insert and update routines.
+     *
+     * @var bool
+     */
+    protected $useTimestamps = true;
+
+    /**
+     * If this model should use "softDeletes" and
+     * simply set a date when rows are deleted, or
+     * do hard deletes.
+     *
+     * @var bool
+     */
+    protected $useSoftDeletes = true;
+
+    /**
      * Allowed Fields
      *
      * @var string[]
