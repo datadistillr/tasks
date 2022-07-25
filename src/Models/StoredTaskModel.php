@@ -101,12 +101,12 @@ class StoredTaskModel extends Model
         $sqlDateFormat = config('Tasks')->sqlDateFormat;
 
         return $this->groupStart()
-            ->where('start <=', $current->format($sqlDateFormat))
-            ->orWhere('start IS NULL')
+            ->where('start_at <=', $current->format($sqlDateFormat))
+            ->orWhere('start_at IS NULL')
             ->groupEnd()
             ->groupStart()
-            ->where('end >=', $current->format($sqlDateFormat))
-            ->orWhere('end IS NULL')
+            ->where('end_at >=', $current->format($sqlDateFormat))
+            ->orWhere('end_at IS NULL')
             ->groupEnd()
             ->findAll();
     }
