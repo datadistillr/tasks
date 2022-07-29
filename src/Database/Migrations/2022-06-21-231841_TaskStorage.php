@@ -22,7 +22,7 @@ class TaskStorage extends Migration
             ],
             'expression' => [
                 'type'       => 'varchar',
-                'constraint' => 50,
+                'constraint' => 255,
             ],
             'command' => [
                 'type' => 'text',
